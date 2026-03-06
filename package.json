@@ -1,10 +1,16 @@
 {
+  "name": "chikolo-bot",
+  "version": "1.0.0",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
   "dependencies": {
     "discord.js": "^14.0.0",
     "@discordjs/voice": "^0.18.0",
     "dotenv": "^16.0.0",
     "ffmpeg-static": "^5.0.0",
-    "sodium-native": "^5.0.0",
+    "libsodium-wrappers": "^0.7.11",
     "opusscript": "^0.0.8"
   }
 }

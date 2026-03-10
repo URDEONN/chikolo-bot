@@ -5,11 +5,11 @@ module.exports = {
     return message.channel.send(
       `📋 **Comandos de Chikolo:**\n\n` +
       `**🎮 Juegos:**\n` +
-      `\`!ruleta\` → Ruleta rusa: alguien del canal de voz pierde y es muteado 30s\n` +
-      `\`!blindtest\` → Adivina el sonido que suena\n` +
-      `\`!doxeo [@alguien]\` → Doxeo falso (es puro bluff)\n\n` +
+      `\`!ruleta\` → Ruleta rusa: alguien del canal de voz pierde y es muteado 30s (no testeado)\n` +
+      `\`!blindtest\` → Adivina el sonido que suena (no testeado) \n` +
+      `\`!doxeo [@alguien]\` → Doxeo falso (es puro weeo)\n\n` +
       `**📊 Stats:**\n` +
-      `\`!ranking\` → Ranking de los más tóxicos del server\n\n` +
+      `\`!ranking\` → Ranking de los más xoros del server\n\n` +
       `**🔊 Sonidos:**\n` +
       `\`!sound <nombre>\` → Reproduce sonido en canal de voz\n` +
       `\`!sounds\` → Lista de sonidos disponibles\n\n` +
@@ -26,7 +26,7 @@ module.exports = {
       `\`chiste\` → Chiste malo\n` +
       `\`verdad / reto\` → Verdad o reto\n` +
       `\`cara o sello\` → Moneda\n\n` +
-      `**🌙 Modo borracho:** activo entre las 2am y 6am (hora Chile)\n`
+      `**🌙 Modo curao:** activo entre las 2am y 6am (hora Chile)\n`
     );
   }
 };

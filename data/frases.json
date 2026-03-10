@@ -1,0 +1,230 @@
+{
+  "miembros": [
+    "osc_v143", "dormir0505", "el.pudu", "mrduet2", "enanopepito729",
+    "urdeon", "digital_despair", "vic_123xd", "naranja30a",
+    "dengue_hueso", "zeitse_78310", "skevin17"
+  ],
+  "sonidos": {
+    "fail": "fail.mp3"
+  },
+  "zonas": {
+    "chile": "America/Santiago",
+    "argentina": "America/Argentina/Buenos_Aires",
+    "peru": "America/Lima",
+    "colombia": "America/Bogota",
+    "mexico": "America/Mexico_City",
+    "españa": "Europe/Madrid",
+    "estados unidos": "America/New_York",
+    "eeuu": "America/New_York",
+    "usa": "America/New_York",
+    "brasil": "America/Sao_Paulo",
+    "venezuela": "America/Caracas",
+    "bolivia": "America/La_Paz",
+    "paraguay": "America/Asuncion",
+    "uruguay": "America/Montevideo",
+    "ecuador": "America/Guayaquil",
+    "japon": "Asia/Tokyo",
+    "china": "Asia/Shanghai",
+    "alemania": "Europe/Berlin",
+    "francia": "Europe/Paris",
+    "reino unido": "Europe/London",
+    "inglaterra": "Europe/London",
+    "australia": "Australia/Sydney",
+    "canada": "America/Toronto",
+    "rusia": "Europe/Moscow"
+  },
+  "insultosFuertes": [
+    "ijo e la perra",
+    "marakoo",
+    "caeza de tetera qla",
+    "colipato qlao",
+    "pasao a coco",
+    "feo sarnoso conchesumadre",
+    "más fome que la shusha",
+    "cara de raja mal lavada",
+    "weón más inútil que un cenicero en una moto",
+    "tan bruto que se pierde en una cancha de fútbol",
+    "más perdido que el teniente Bello",
+    "más molesto que piedrita en el zapato",
+    "hijo de la maraca más fea que nadie quiso coger porque la zorra olía a pescado podrido y tenía la kuka con tiña y piojos del tamaño de un ratón con hormonas, por lo que nadie quiso meterle ni la punta del pene en la mancha con bigotes por miedo a contraer gonorrea."
+  ],
+  "opiniones": [
+    "es más fome que la shusha",
+    "es un caso perdido, pero lo queremos igual",
+    "es el tipo de persona que se cae solo en una cancha plana",
+    "tiene el carisma de una escoba mojada",
+    "es tan bruto que se confunde atando los zapatos",
+    "es el más qlao del grupo y eso tiene mérito",
+    "lo aguanto a ratos, a ratos no tanto",
+    "es un weón raro pero wena persona en el fondo",
+    "tiene más cuento que el libro de las mil y una noches",
+    "es el tipo que siempre llega tarde pero cuando llega la caga igual",
+    "le falta un tornillo pero es entretenido",
+    "es tan pálido que brilla en la oscuridad",
+    "juega pésimo pero se cree el mejor, eso se respeta",
+    "habla mucho para decir tan poco",
+    "no tiene filtro y eso lo hace peligroso en cualquier reunión",
+    "tiene más excusas que un político en campaña",
+    "es raro pero entretenido, como un accidente que no puedes dejar de mirar",
+    "le falta cafeína para ser interesante"
+  ],
+  "respuestasInsultos": [
+    "oe no me faltes el respeto o te paso por el pico",
+    "el espejo te debe odiar cada mañana",
+    "qué bonito vocabulario, lo aprendiste solo o te ayudaron?",
+    "tranquilo que yo también te quiero, qlao",
+    "mira quién habla, el rey de los colipatoos",
+    "me importa una raja lo que dices, weón",
+    "sigue insultando que me entretenís",
+    "con esa boca besas a tu mamá?",
+    "aww pobrecito, ¿se frustró el niño?",
+    "eso me dolió tanto como nada"
+  ],
+  "respuestasCasuales": [
+    "ya poh qué wea",
+    "oe y qué querís que haga con eso",
+    "seré honesto, no te estaba prestando atención",
+    "claro que sí mi xan, lo que tú digas",
+    "imagínate que me importa eso",
+    "oe bacán, siguiente",
+    "sip, entendido, ignorado",
+    "jajaja no igual",
+    "mmm interesante, igual me la suda",
+    "ya po, toma un mate y relájate",
+    "wena dato, lo voy a olvidar en 3 segundos"
+  ],
+  "respuestasPreguntas": [
+    "ni idea, pregúntale a google que sabe más que yo",
+    "depende de muchos factores que no me interesa analizar",
+    "esa pregunta tiene trampa y no voy a caer",
+    "filosófico el weón, no sé",
+    "buena pregunta, mala persona para hacérsela",
+    "pregúntale a alguien que sepa, yo solo existo pa molestar",
+    "respuesta corta: no. Respuesta larga: nooooooo",
+    "eso no lo sabe ni el ChatGPT, menos yo"
+  ],
+  "respuestasGenerales": [
+    "Sí mi xan, te escucho...", "Ajá, dime más...", "Mmm… suena raro mi xan.",
+    "Penka tu broma kla", "te paso por el pico marikong",
+    "no tengo idea de qué me estás hablando", "para qué me dices eso a mí",
+    "me importa una raja lo que dices", "tas hablando mucha tontería mi rey",
+    "wena info, me la pela", "déjame pensarlo... no",
+    "qué interesante, igual me chupa un huevo", "bro tas hablando solo casi",
+    "si poh si, lo que tú digas", "mira quién habla lol",
+    "eso no se lo cree ni tu mamá", "ya cállate un poco anda", "wena, siguiente",
+    "tus neuronas están de vacaciones parece", "error 404: me importa un pico",
+    "eso suena a problema tuyo bro", "hay días que no sé pa qué prendo esto",
+    "literalmente no me importa nada de lo que dijiste", "bro para con eso",
+    "claramente alguien no durmió bien anoche", "para eso me llamas?",
+    "tan intenso pa tan poco", "oe eso es penca la verdad", "tan dramático para nada",
+    "de verdad pensaste eso y decidiste decirlo, valiente",
+    "me dejaste sin palabras y eso es difícil",
+    "sigue así, algún día llegarás a algún lado", "mmk",
+    "si la mediocridad fuera deporte serías olímpico", "nah",
+    "tú sí que sabes cómo arruinar un silencio", "ok boomer",
+    "pregúntame si me importa... spoiler: no", "eso es tuyo, quédatelo",
+    "ta bien, ta bien...", "imagina creer eso", "oe ya te escuché, ahora cállate",
+    "qué profundo, casi me duermo", "sip entendido, no me interesa",
+    "alguien te dijo que eras entretenido y te lo creíste",
+    "ok ok ok... no", "eso no te lo preguntó nadie",
+    "tremendo aporte al servidor ese", "qué ganas de no estar acá en este momento",
+    "oe bájale dos al drama", "ok campeón, lo que tú digas",
+    "ya ya ya, entendido, me chupa un huevo", "tan intenso el niño",
+    "de todos los mensajes que pudiste mandar elegiste ese, respeto"
+  ],
+  "saludos": [
+    "y quien eri vo", "charchetuo qlao no me habli", "ola amor",
+    "tu nariz contra mis bolas", "ola ola caracola",
+    "ah llegaste tú, qué lata", "salud recibida, ignorada exitosamente",
+    "oe llegó el famoso", "mira quién apareció por fin", "ola, qué querís"
+  ],
+  "elogios": [
+    "aww gracias mi amor, igual eres feo",
+    "lo sé, soy el mejor bot del mundo mundial",
+    "eso intenta subirme la autoestima pero sigo siendo superior",
+    "me lo merezco honestamente",
+    "sí soy lo máximo, gracias por notarlo"
+  ],
+  "respuestas8ball": [
+    "Sí, definitivamente", "No way bro", "Las señales apuntan a que sí",
+    "Pregúntame después que estoy ocupado", "Ni en sueños",
+    "Puede ser, puede que no", "Sí pero vas a arrepentirte",
+    "La magia dice que no", "Con toda certeza NO", "Mejor ni preguntes eso"
+  ],
+  "chistes": [
+    "¿Por qué el libro de matemáticas estaba triste? Porque tenía demasiados problemas.",
+    "¿Qué le dice un techo a otro techo? Techo de menos.",
+    "¿Cómo se llama el campeón de buceo japonés? Tokofondo. ¿Y el subcampeón? Kasitokofondo.",
+    "¿Qué hace una abeja en el gimnasio? ¡Zum-ba!",
+    "Mi contraseña es incorrecta. Cada vez que la olvido el sistema me dice: tu contraseña es incorrecta.",
+    "Le pregunté a mi perro qué es dos menos dos. Se quedó callado. Nada, correcto.",
+    "¿Cuántos programadores se necesitan para cambiar un foco? Ninguno, es un problema de hardware."
+  ],
+  "verdades": [
+    "¿Cuál es la cosa más vergonzosa que has hecho en el servidor?",
+    "¿A quién del servidor le tienes mala?",
+    "¿Cuál es tu kill/death más patético en el último juego que jugaste?",
+    "¿Alguna vez te has quedado afk fingiendo jugar?",
+    "¿Cuál es la excusa más mala que has usado para no jugar con el grupo?",
+    "¿A quién del server le copiarías el estilo si pudieras?"
+  ],
+  "retos": [
+    "Pon tu foto de perfil como el último meme que te mandaron",
+    "Manda un audio de ti cantando algo, lo que sea",
+    "Escribe un poema de 4 líneas sobre el juego que más odias",
+    "Cambia tu apodo a algo que elija el servidor por 1 hora",
+    "Manda el último screenshot de tu galería sin ver qué es",
+    "Di algo bonito de cada persona activa en el canal ahora mismo"
+  ],
+  "frasesDormir": [
+    "Dormir con el counter es más mala que la perra",
+    "No podi dormir con el counter, es más mala que la perra",
+    "díganle a la dormir q no ocupe nunca mas esa wea porfa",
+    "el counter y el sueño no se mezclan, eso es científico",
+    "dormirse con el counter prendío es pecado mortal"
+  ],
+  "juegos": [
+    "fornite", "mierdanigans", "zombodrio", "volomierda",
+    "mejor vallance a dormir chalas qlas", "tira mudae",
+    "LoL pero solo pa sufrir", "minecraft y hacerse un rancho",
+    "ninguno, mejor duerman"
+  ],
+  "predicciones": [
+    "va a estar soltero antes de fin de mes, ya lo vi en las cartas",
+    "va a hacer un clutch épico y nadie va a estar mirando",
+    "va a decir que 'llega en 5 minutos' y va a tardar 40",
+    "va a comprar un juego nuevo y no va a pasar de la primera hora",
+    "va a cambiar de main y va a jugar peor que antes",
+    "su próxima excusa para no jugar va a ser 'tengo que estudiar'",
+    "va a desaparecer del server por dos semanas sin avisar",
+    "va a recomendar una serie que nadie va a ver",
+    "va a rage quit antes de que termine la partida",
+    "va a llegar tarde a la próxima juntada, como siempre",
+    "va a decir que 'ya casi llega' y está recién despertando",
+    "va a morir en el peor momento posible y va a culpar al ping"
+  ],
+  "doxeoCalles": [
+    "Calle Falsa 123", "Pasaje Los Colipatoos 456",
+    "Av. Marako 789", "Villa Los Qliaos 321", "Población Penca 666"
+  ],
+  "doxeoHistorial": [
+    "puro hentai y videos de gatitos",
+    "tutoriales de cómo mejorar en fornite (no funcionaron)",
+    "cómo hablarle a una chica (tampoco funcionó)",
+    "memes de hace 5 años que ya nadie comparte",
+    "recetas de cocina que nunca preparó",
+    "videos de fails de gaming durante 6 horas seguidas",
+    "cómo ser menos qlao (sin resultados hasta la fecha)"
+  ],
+  "palabrasToxicas": ["weon", "weón", "qlao", "maraco", "conchetumare", "csm", "pico", "raja", "ctm", "marico", "marikong"],
+  "frasesBorracho": [
+    "ssiii mi xaaaan... te... te quieero mucho bro",
+    "oe espera... qué me preguntaste? me perdí",
+    "nooo tiooo... tu eres el mejor... el MEJOR",
+    "jajajajaja eso fue lo más... lo más... oe qué dijiste",
+    "mira... mira... te voy a decir algo importanteee... se me olvidó",
+    "estoy bieeen... estoy BIEN... solo un poquiiito mareado",
+    "oe alguien pidió pizza?? yo quiero pizzaaaa",
+    "no no no espera... sí... no... no sé"
+  ]
+}

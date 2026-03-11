@@ -6,10 +6,10 @@ const categorias = {
     emoji: '🎮',
     label: 'Juegos',
     color: 0xFF4757,
-    descripcion: 'Pa entretenerse con los weones del server',
+    descripcion: 'Pa entretenerse con los weone del server',
     comandos: [
-      { cmd: '`!ruleta`', desc: 'Ruleta rusa — alguien del canal de voz se lleva 30s muteado 💀' },
-      { cmd: '`!blindtest`', desc: 'Adivina el sonido que suena, flaite culto' },
+      { cmd: '`!ruleta`', desc: 'Ruleta rusa — alguien de la llamada es elegido pa matarlo' },
+      { cmd: '`!blindtest`', desc: 'Adivina el sonido que suena (esta wa no funciona) ' },
       { cmd: '`!doxeo [@alguien]`', desc: 'Doxeo falso — puro weeo, no se asuste' },
     ]
   },
@@ -19,7 +19,7 @@ const categorias = {
     color: 0xA855F7,
     descripcion: 'Comandos pa reírse y pasarlo bien',
     comandos: [
-      { cmd: '`/horoscopo_flaite`', desc: 'Tu horóscopo del día pero a lo chileno 🇨🇱' },
+      { cmd: '`/misuerte`', desc: 'Tu horóscopo del día pero a lo chileno 🇨🇱' },
     ]
   },
   stats: {
@@ -35,7 +35,7 @@ const categorias = {
     emoji: '🔊',
     label: 'Sonidos',
     color: 0x10B981,
-    descripcion: 'Reproduce weás en el canal de voz',
+    descripcion: 'Reproduce weás en el canal de voz ( no sirve)',
     comandos: [
       { cmd: '`!sound <nombre>`', desc: 'Reproduce un sonido en el canal de voz' },
       { cmd: '`!sounds`', desc: 'Lista todos los sonidos disponibles' },
@@ -45,7 +45,7 @@ const categorias = {
     emoji: '🗣️',
     label: '@Chikolo',
     color: 0x3B82F6,
-    descripcion: 'Mencioná a @Chikolo y dile lo que querís',
+    descripcion: 'Mencioná a @Chikolo y dile lo que querí',
     comandos: [
       { cmd: '`que opinas de @alguien`', desc: 'Opinión random sobre alguien' },
       { cmd: '`predice / adivina @alguien`', desc: 'Predicción del futuro' },
@@ -69,7 +69,7 @@ function buildMenuEmbed() {
     .setColor(0x2B2D31)
     .setTitle('🤙  CHIKOLO BOT  🤙')
     .setDescription(
-      '> *El bot más xoro del servidor, po weon.*\n\n' +
+      '> *El bot más xoro del serv*\n\n' +
       '**Elige una categoría** pa ver los comandos:\n\n' +
       Object.entries(categorias).map(([, cat]) =>
         `${cat.emoji} **${cat.label}** — ${cat.descripcion}`

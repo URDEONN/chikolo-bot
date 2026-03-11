@@ -85,10 +85,11 @@ const colores = [0xFF6B6B, 0xFFD93D, 0x6BCB77, 0x4D96FF, 0xFF922B, 0xCC5DE8];
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName('horoscopo_flaite')
+    .setName('misuerte')
     .setDescription('Tu horóscopo del día, pero a lo chileno 🔮')
     .addStringOption(option =>
-      option.setName('signo')
+      option
+        .setName('signo')
         .setDescription('¿Cuál es tu signo?')
         .setRequired(true)
         .addChoices(
@@ -103,22 +104,24 @@ module.exports = {
     const suerteDia = suerte[Math.floor(Math.random() * suerte.length)];
     const emoji = emojisSigno[signo];
     const color = colores[Math.floor(Math.random() * colores.length)];
-
-    const diasSuerte = Math.floor(Math.random() * 7) + 1;
     const numeroDeSuerte = Math.floor(Math.random() * 100);
+    const diasSuerte = Math.floor(Math.random() * 7) + 1;
 
     const embed = new EmbedBuilder()
       .setColor(color)
-      .setTitle(`${emoji} Horóscopo Flaite — ${signo} ${emoji}`)
+      .setTitle(`${emoji} Tu Suerte Hoy — ${signo} ${emoji}`)
       .setDescription(`*"${prediccion}"*`)
       .addFields(
-        { name: '🍀 Tu suerte hoy', value: suerteDia, inline: true },
+        { name: '🍀 Suerte del día', value: suerteDia, inline: true },
         { name: '🔢 Número de suerte', value: `${numeroDeSuerte}`, inline: true },
         { name: '📅 Días buenos esta semana', value: `${diasSuerte} de 7`, inline: true },
       )
       .setFooter({ text: 'Los astros hablan, weon. Escúchalos.' })
       .setTimestamp();
 
+    await interaction.reply({ embeds: [embed] });
+  },
+};
     await interaction.reply({ embeds: [embed] });
   },
 };

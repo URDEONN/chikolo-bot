@@ -122,6 +122,3 @@ module.exports = {
     return message.channel.send({ embeds: [embed] });
   },
 };
-    await interaction.reply({ embeds: [embed] });
-  },
-};

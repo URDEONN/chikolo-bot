@@ -11,7 +11,7 @@ module.exports = {
     await message.channel.send(`🎲 Buscando personaje random de **${query}**...`);
 
     try {
-      // 1. Buscar el anime
+      // 1. Buscar el anime y obtener su ID
       const searchRes = await fetch(
         `https://kitsu.io/api/edge/anime?filter[text]=${encodeURIComponent(query)}&page[limit]=1`,
         { headers: HEADERS }
@@ -26,39 +26,50 @@ module.exports = {
       const animeId = anime.id;
       const tituloAnime = anime.attributes.canonicalTitle;
 
-      // 2. Buscar personajes del anime con sus datos incluidos
-      const charRes = await fetch(
-        `https://kitsu.io/api/edge/anime-characters?filter[animeId]=${animeId}&include=character&page[limit]=20`,
+      // 2. Buscar los anime-characters del anime (relación + rol)
+      const acRes = await fetch(
+        `https://kitsu.io/api/edge/anime-characters?filter[animeId]=${animeId}&page[limit]=20`,
         { headers: HEADERS }
       );
-      const charData = await charRes.json();
+      const acData = await acRes.json();
 
-      if (!charData.included?.length) {
+      if (!acData.data?.length) {
         return message.channel.send(`No encontré personajes de **${tituloAnime}** en la base de datos won 😔`);
       }
 
-      // 3. Elegir personaje random
-      const personaje = charData.included[Math.floor(Math.random() * charData.included.length)];
-      const pAttr = personaje.attributes;
+      // 3. Elegir una relación anime-character random y obtener el ID del personaje
+      const acRandom = acData.data[Math.floor(Math.random() * acData.data.length)];
+      const rol = acRandom.attributes?.role === 'main' ? '⭐ Principal' : '👤 Secundario';
+      const charId = acRandom.relationships?.character?.data?.id;
 
-      // 4. Buscar rol del personaje (main / supporting)
-      const relacion = charData.data?.find(
-        ac => ac.relationships?.character?.data?.id === personaje.id
+      if (!charId) {
+        return message.channel.send(`No pude obtener el personaje, intenta de nuevo won`);
+      }
+
+      // 4. Buscar los datos reales del personaje por su ID
+      const charRes = await fetch(
+        `https://kitsu.io/api/edge/characters/${charId}`,
+        { headers: HEADERS }
       );
-      const rol = relacion?.attributes?.role === 'main' ? '⭐ Principal' : '👤 Secundario';
+      const charData = await charRes.json();
+      const pAttr = charData.data?.attributes;
 
-      // 5. Buscar seiyū (actor de voz japonés)
+      if (!pAttr) {
+        return message.channel.send(`No pude cargar los datos del personaje, intenta de nuevo won`);
+      }
+
+      // 5. Buscar seiyū (actor de voz japonés) — opcional, no rompe si falla
       let seiyu = null;
       try {
         const castRes = await fetch(
-          `https://kitsu.io/api/edge/castings?filter[mediaId]=${animeId}&filter[characterId]=${personaje.id}&filter[isVoiceActor]=true&filter[language]=Japanese&include=person&page[limit]=1`,
+          `https://kitsu.io/api/edge/castings?filter[mediaId]=${animeId}&filter[characterId]=${charId}&filter[isVoiceActor]=true&filter[language]=Japanese&include=person&page[limit]=1`,
           { headers: HEADERS }
         );
         const castData = await castRes.json();
         if (castData.included?.length) {
-          seiyu = castData.included[0].attributes.name;
+          seiyu = castData.included[0].attributes?.name ?? null;
         }
-      } catch { /* si no hay seiyū simplemente no se muestra */ }
+      } catch { /* si no hay seiyū no pasa nada */ }
 
       // 6. Armar descripción
       const desc = pAttr.description
@@ -67,8 +78,8 @@ module.exports = {
 
       // 7. Construir embed
       const fields = [
-        { name: 'Rol', value: rol, inline: true },
-        { name: 'Anime', value: tituloAnime, inline: true },
+        { name: 'Rol',   value: rol,         inline: true },
+        { name: 'Anime', value: tituloAnime,  inline: true },
       ];
 
       if (seiyu) {

@@ -69,6 +69,7 @@ const categorias = {
       { cmd: '`chiste`',                       desc: 'Chiste malo garantizado' },
       { cmd: '`verdad / reto`',                desc: 'Verdad o reto random' },
       { cmd: '`cara o sello`',                 desc: 'Moneda al aire' },
+      { cmd: '`borra los últimos <N> mensajes`', desc: 'Borra los últimos N mensajes del bot en el canal' },
     ]
   }
 };

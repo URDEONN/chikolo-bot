@@ -37,6 +37,17 @@ module.exports = {
     const uid = message.author.id;
     const nombreUsuario = message.author.username;
 
+    // ─── FESTY EN CANAL DE FOTOS ─────────────────────────────────────────
+    const FESTY_ID   = '1153051690770116669';
+    const FOTOS_ID   = '1255323923655036979';
+    if (
+      message.author.id === FESTY_ID &&
+      message.channel.id === FOTOS_ID &&
+      message.attachments.size > 0
+    ) {
+      return message.channel.send('valla foto de mierda mi xan');
+    }
+
     // ─── CONTADOR DE TOXICIDAD (pasivo, siempre activo) ───────────────────
     const esToxica = frases.palabrasToxicas.some(p => contenido.includes(p));
     if (esToxica) {

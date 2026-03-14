@@ -11,7 +11,7 @@ module.exports = {
     await message.channel.send(`🎲 Buscando personaje random de **${query}**...`);
 
     try {
-      // 1. Traer los primeros 10 resultados
+      // 1. Buscar el anime — traer varios y priorizar TV
       const searchRes = await fetch(
         `https://kitsu.io/api/edge/anime?filter[text]=${encodeURIComponent(query)}&page[limit]=10`,
         { headers: HEADERS }
@@ -22,58 +22,53 @@ module.exports = {
         return message.channel.send(`No encontré ese anime won 😔`);
       }
 
-      // 2. Ordenar: TV primero, luego el resto
       const resultados = [
         ...searchData.data.filter(a => a.attributes.subtype === 'TV'),
         ...searchData.data.filter(a => a.attributes.subtype !== 'TV'),
       ];
 
-      // 3. Iterar hasta encontrar uno que tenga personajes cargados
-      let acData = null;
+      // 2. Iterar hasta encontrar anime con personajes incluidos
       let anime = null;
+      let personajes = []; // array de objetos character completos
+      let roles = {};      // charId -> rol
 
       for (const candidato of resultados) {
         const res = await fetch(
-          `https://kitsu.io/api/edge/anime-characters?filter[animeId]=${candidato.id}&page[limit]=20`,
+          `https://kitsu.io/api/edge/anime-characters?filter[animeId]=${candidato.id}&include=character&page[limit]=20`,
           { headers: HEADERS }
         );
         const data = await res.json();
-        if (data.data?.length) {
-          acData = data;
+
+        // data.data = relaciones (con el rol)
+        // data.included = personajes reales
+        if (data.included?.length) {
           anime = candidato;
+          personajes = data.included.filter(i => i.type === 'characters');
+
+          // mapear charId -> rol desde data.data
+          for (const rel of (data.data ?? [])) {
+            const charId = rel.relationships?.character?.data?.id;
+            if (charId) roles[charId] = rel.attributes?.role ?? 'supporting';
+          }
           break;
         }
       }
 
-      if (!anime || !acData) {
+      if (!anime || !personajes.length) {
         return message.channel.send(`No encontré personajes de **${query}** en Kitsu won 😔`);
       }
 
       const animeId = anime.id;
       const tituloAnime = anime.attributes.canonicalTitle;
 
-      // 4. Elegir personaje random y obtener su ID y rol
-      const acRandom = acData.data[Math.floor(Math.random() * acData.data.length)];
-      const rol = acRandom.attributes?.role === 'main' ? '⭐ Principal' : '👤 Secundario';
-      const charId = acRandom.relationships?.character?.data?.id;
+      // 3. Elegir personaje random del included
+      const pData = personajes[Math.floor(Math.random() * personajes.length)];
+      const pAttr = pData.attributes;
+      const charId = pData.id;
+      const rolRaw = roles[charId] ?? 'supporting';
+      const rol = rolRaw === 'main' ? '⭐ Principal' : '👤 Secundario';
 
-      if (!charId) {
-        return message.channel.send(`No pude obtener el personaje, intenta de nuevo won`);
-      }
-
-      // 5. Buscar datos reales del personaje
-      const charRes = await fetch(
-        `https://kitsu.io/api/edge/characters/${charId}`,
-        { headers: HEADERS }
-      );
-      const charData = await charRes.json();
-      const pAttr = charData.data?.attributes;
-
-      if (!pAttr) {
-        return message.channel.send(`No pude cargar los datos del personaje, intenta de nuevo won`);
-      }
-
-      // 6. Buscar seiyū — opcional, no rompe si falla
+      // 4. Buscar seiyū — opcional
       let seiyu = null;
       try {
         const castRes = await fetch(
@@ -86,17 +81,16 @@ module.exports = {
         }
       } catch { /* sin seiyū no pasa nada */ }
 
-      // 7. Armar descripción
+      // 5. Descripción
       const desc = pAttr.description
         ? pAttr.description.substring(0, 300) + (pAttr.description.length > 300 ? '...' : '')
         : '*Sin descripción disponible.*';
 
-      // 8. Construir embed
+      // 6. Embed
       const fields = [
-        { name: 'Rol',   value: rol,         inline: true },
-        { name: 'Anime', value: tituloAnime,  inline: true },
+        { name: 'Rol',   value: rol,        inline: true },
+        { name: 'Anime', value: tituloAnime, inline: true },
       ];
-
       if (seiyu) fields.push({ name: 'Seiyū (JP)', value: seiyu, inline: true });
       fields.push({ name: 'Descripción', value: desc, inline: false });
 

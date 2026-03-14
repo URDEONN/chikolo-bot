@@ -11,9 +11,9 @@ module.exports = {
     await message.channel.send(`🎲 Buscando personaje random de **${query}**...`);
 
     try {
-      // 1. Buscar el anime y obtener su ID
+      // 1. Traer varios resultados y priorizar series TV sobre películas/OVAs
       const searchRes = await fetch(
-        `https://kitsu.io/api/edge/anime?filter[text]=${encodeURIComponent(query)}&page[limit]=1`,
+        `https://kitsu.io/api/edge/anime?filter[text]=${encodeURIComponent(query)}&page[limit]=5`,
         { headers: HEADERS }
       );
       const searchData = await searchRes.json();
@@ -22,7 +22,10 @@ module.exports = {
         return message.channel.send(`No encontré ese anime won 😔`);
       }
 
-      const anime = searchData.data[0];
+      const anime =
+        searchData.data.find(a => a.attributes.subtype === 'TV') ??
+        searchData.data[0];
+
       const animeId = anime.id;
       const tituloAnime = anime.attributes.canonicalTitle;
 
@@ -78,8 +81,8 @@ module.exports = {
 
       // 7. Construir embed
       const fields = [
-        { name: 'Rol',   value: rol,         inline: true },
-        { name: 'Anime', value: tituloAnime,  inline: true },
+        { name: 'Rol',   value: rol,        inline: true },
+        { name: 'Anime', value: tituloAnime, inline: true },
       ];
 
       if (seiyu) {

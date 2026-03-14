@@ -1,6 +1,6 @@
 const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, ComponentType } = require('discord.js');
 
-const VERSION = 'v1.3.0';
+const VERSION = 'v1.3.9';
 
 // ─── CATEGORÍAS ───────────────────────────────────────────────────────────────
 const categorias = {
@@ -22,6 +22,7 @@ const categorias = {
     descripcion: 'pa reírse y pasarlo bien',
     comandos: [
       { cmd: '`!misuerte <signo>`', desc: 'Tu horóscopo del día pero a lo chileno' },
+      { cmd: '`!curiosidad`',       desc: 'Curiosidad random del mundo, traducida al español' },
     ]
   },
   stats: {

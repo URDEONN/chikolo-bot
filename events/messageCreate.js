@@ -67,7 +67,7 @@ module.exports = {
       const cmdName = args.shift().toLowerCase();
       const cmd = client.commands.get(cmdName);
       if (cmd) return cmd.execute(message, args, client, estado);
-      return; // comando desconocido, ignorar silenciosamente
+      return;
     }
 
     // ─── REQUIERE MENCIÓN ─────────────────────────────────────────────────
@@ -76,6 +76,42 @@ module.exports = {
     contarUso(estado, uid);
 
     const c = contenido;
+
+    // ─── BORRAR MENSAJES DEL BOT ──────────────────────────────────────────
+    // Detecta: "borra los últimos 5 mensajes", "limpia los últimos 10", "borra tus mensajes"
+    const matchBorrar = c.match(/\b(borra|limpia|elimina)\b[\s\S]{0,30}?(\d+)/i);
+    const matchBorrarSimple = c.match(/\b(borra|limpia|elimina)\b[\s\S]{0,30}?\b(mensajes?|historial)\b/i);
+
+    if (matchBorrar || matchBorrarSimple) {
+      let cantidad = matchBorrar ? parseInt(matchBorrar[2]) : 5;
+      cantidad = Math.min(Math.max(cantidad, 1), 20); // entre 1 y 20
+
+      try {
+        const todos = await message.channel.messages.fetch({ limit: 100 });
+        const delBot = [...todos
+          .filter(m => m.author.id === client.user.id)
+          .sort((a, b) => b.createdTimestamp - a.createdTimestamp)
+          .values()
+        ].slice(0, cantidad);
+
+        if (!delBot.length) {
+          return message.channel.send('no tengo mensajes pa borrar acá won 🤷');
+        }
+
+        await message.channel.bulkDelete(delBot, true);
+
+        const confirm = await message.channel.send(`listo, borré ${delBot.length} mensaje${delBot.length !== 1 ? 's' : ''} 🗑️`);
+        setTimeout(() => confirm.delete().catch(() => {}), 4000);
+
+      } catch (err) {
+        console.error('[limpiar]', err);
+        message.channel.send('no pude borrar los mensajes, puede que sean muy antiguos o me faltan permisos won');
+      }
+      return;
+    }
+
+    // ─── RESTO DE RESPUESTAS ──────────────────────────────────────────────
+
     let respuesta;
 
     // Modo borracho (2am - 6am)

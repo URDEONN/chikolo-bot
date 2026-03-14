@@ -1,5 +1,7 @@
 const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, ComponentType } = require('discord.js');
 
+const VERSION = 'v1.3.0';
+
 // ─── CATEGORÍAS ───────────────────────────────────────────────────────────────
 const categorias = {
   juegos: {
@@ -8,9 +10,9 @@ const categorias = {
     color: 0xFF4757,
     descripcion: 'pa entretenerse con los won del server',
     comandos: [
-      { cmd: '`!ruleta`',            desc: 'Ruleta rusa — alguien del canal de voz se lleva 30s muteado' },
-      { cmd: '`!blindtest`',         desc: 'Adivina el sonido que suena' },
-      { cmd: '`!doxeo [@alguien]`',  desc: 'Doxeo falso, puro weeo, no se asuste' },
+      { cmd: '`!ruleta`',           desc: 'Ruleta rusa — alguien del canal de voz se lleva 30s muteado' },
+      { cmd: '`!blindtest`',        desc: 'Adivina el sonido que suena' },
+      { cmd: '`!doxeo [@alguien]`', desc: 'Doxeo falso, puro weeo, no se asuste' },
     ]
   },
   entretenimiento: {
@@ -47,8 +49,18 @@ const categorias = {
     color: 0x7b2d8b,
     descripcion: 'info de anime pa los won cultivaos',
     comandos: [
-      { cmd: '`!dato <anime>`',     desc: 'Dato random de cualquier anime — personajes, episodios, rating...' },
-      { cmd: '`!trending`',         desc: 'Los 10 animes más populares ahora mismo' },
+      { cmd: '`!dato <anime>`',      desc: 'Dato random — episodios, rating, personajes...' },
+      { cmd: '`!personaje <anime>`', desc: 'Personaje random con imagen, rol y seiyū' },
+      { cmd: '`!trending`',          desc: 'Top 10 animes más populares ahora' },
+    ]
+  },
+  config: {
+    emoji: '⚙️',
+    label: 'Config',
+    color: 0x64748B,
+    descripcion: 'ajustes del bot, solo pa el dueño',
+    comandos: [
+      { cmd: '`!prefix <nuevo>`', desc: 'Cambia el prefix de los comandos, ej: `!prefix ch`' },
     ]
   },
   chikolo: {
@@ -57,19 +69,12 @@ const categorias = {
     color: 0x3B82F6,
     descripcion: 'mencioná a @Chikolo y dile lo que querí',
     comandos: [
-      { cmd: '`que opinas de @alguien`',       desc: 'Opinión random sobre alguien' },
-      { cmd: '`predice / adivina @alguien`',   desc: 'Predicción del futuro' },
-      { cmd: '`insulta a @alguien`',           desc: 'Insulto creativo garantizado' },
-      { cmd: '`recuerdame <cosa> en <N> mins`',desc: 'Temporizador' },
-      { cmd: '`tira dado / tira dado 20`',     desc: 'Tira un dado' },
-      { cmd: '`8ball <pregunta>`',             desc: 'La bola mágica responde' },
-      { cmd: '`que hora es`',                  desc: 'Hora de cualquier país' },
-      { cmd: '`elige <A> o <B>`',              desc: 'El bot decide por ti, won' },
-      { cmd: '`numero random entre X y Y`',    desc: 'Número al azar' },
-      { cmd: '`chiste`',                       desc: 'Chiste malo garantizado' },
-      { cmd: '`verdad / reto`',                desc: 'Verdad o reto random' },
-      { cmd: '`cara o sello`',                 desc: 'Moneda al aire' },
-      { cmd: '`borra los últimos <N> mensajes`', desc: 'Borra los últimos N mensajes del bot en el canal' },
+      { cmd: '`que opinas de @x` / `insulta a @x` / `predice @x`', desc: 'Opiniones, insultos y predicciones' },
+      { cmd: '`8ball <pregunta>` / `chiste` / `verdad` / `reto`',   desc: 'Respuestas mágicas y juegos' },
+      { cmd: '`elige <A> o <B>` / `cara o sello` / `tira dado`',    desc: 'Decisiones al azar' },
+      { cmd: '`numero random entre X y Y` / `que hora es`',         desc: 'Utilidades' },
+      { cmd: '`recuerdame <cosa> en <N> mins`',                     desc: 'Temporizador' },
+      { cmd: '`borra los últimos <N> mensajes`',                    desc: 'Limpia los mensajes del bot' },
     ]
   }
 };
@@ -90,7 +95,7 @@ function buildMenuEmbed() {
       '> Elige una categoría abajo pa ver los comandos.\n' +
       '> Entre las **2am – 6am** (Chile) el modo curao está activo 🌙'
     )
-    .setFooter({ text: 'Chikolo Bot • hecho con cariño y pisco' })
+    .setFooter({ text: `Chikolo Bot ${VERSION} • hecho con cariño y pisco` })
     .setTimestamp();
 }
 
@@ -109,15 +114,16 @@ function buildCategoryEmbed(catKey) {
         inline: false,
       }))
     )
-    .setFooter({ text: 'Vuelve al menú con el botón Inicio' });
+    .setFooter({ text: `Chikolo Bot ${VERSION} • Vuelve al menú con el botón Inicio` });
 }
 
 // ─── BOTONES ──────────────────────────────────────────────────────────────────
 function buildButtons(activeCat = null) {
   const keys = Object.keys(categorias);
 
+  // row 1: primeras 4 categorías
   const row1 = new ActionRowBuilder().addComponents(
-    keys.slice(0, 3).map(key =>
+    keys.slice(0, 4).map(key =>
       new ButtonBuilder()
         .setCustomId(`ayuda_cat_${key}`)
         .setLabel(`${categorias[key].emoji} ${categorias[key].label}`)
@@ -125,8 +131,9 @@ function buildButtons(activeCat = null) {
     )
   );
 
+  // row 2: resto + botón inicio
   const row2 = new ActionRowBuilder().addComponents(
-    ...keys.slice(3).map(key =>
+    ...keys.slice(4).map(key =>
       new ButtonBuilder()
         .setCustomId(`ayuda_cat_${key}`)
         .setLabel(`${categorias[key].emoji} ${categorias[key].label}`)

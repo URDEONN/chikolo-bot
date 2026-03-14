@@ -6,86 +6,100 @@ const categorias = {
     emoji: '🎮',
     label: 'Juegos',
     color: 0xFF4757,
-    descripcion: 'Pa entretenerse con los weones del server',
+    descripcion: 'pa entretenerse con los won del server',
     comandos: [
-      { cmd: '`!ruleta`', desc: 'Ruleta rusa — alguien del canal de voz se lleva 30s muteado 💀' },
-      { cmd: '`!blindtest`', desc: 'Adivina el sonido que suena, flaite culto' },
-      { cmd: '`!doxeo [@alguien]`', desc: 'Doxeo falso — puro weeo, no se asuste' },
+      { cmd: '`!ruleta`',            desc: 'Ruleta rusa — alguien del canal de voz se lleva 30s muteado' },
+      { cmd: '`!blindtest`',         desc: 'Adivina el sonido que suena' },
+      { cmd: '`!doxeo [@alguien]`',  desc: 'Doxeo falso, puro weeo, no se asuste' },
     ]
   },
   entretenimiento: {
     emoji: '🔮',
     label: 'Entretenimiento',
     color: 0xA855F7,
-    descripcion: 'Comandos pa reírse y pasarlo bien',
+    descripcion: 'pa reírse y pasarlo bien',
     comandos: [
-      { cmd: '`!misuerte <signo>`', desc: 'Tu horóscopo del día pero a lo chileno 🇨🇱' },
+      { cmd: '`!misuerte <signo>`', desc: 'Tu horóscopo del día pero a lo chileno' },
     ]
   },
   stats: {
     emoji: '📊',
     label: 'Stats',
     color: 0xF59E0B,
-    descripcion: 'Pa saber quién es el mas xoro',
+    descripcion: 'pa saber quién es el más xoro del server',
     comandos: [
-      { cmd: '`!ranking`', desc: 'Ranking de los más xoros del server 👑' },
+      { cmd: '`!ranking`', desc: 'Ranking de los más xoros 👑' },
     ]
   },
   sonidos: {
     emoji: '🔊',
     label: 'Sonidos',
     color: 0x10B981,
-    descripcion: 'Reproduce weás en el canal de voz',
+    descripcion: 'reproduce cosas en el canal de voz',
     comandos: [
       { cmd: '`!sound <nombre>`', desc: 'Reproduce un sonido en el canal de voz' },
-      { cmd: '`!sounds`', desc: 'Lista todos los sonidos disponibles' },
+      { cmd: '`!sounds`',         desc: 'Lista todos los sonidos disponibles' },
+    ]
+  },
+  anime: {
+    emoji: '🎌',
+    label: 'Anime',
+    color: 0x7b2d8b,
+    descripcion: 'info de anime pa los won cultivaos',
+    comandos: [
+      { cmd: '`!dato <anime>`',     desc: 'Dato random de cualquier anime — personajes, episodios, rating...' },
+      { cmd: '`!trending`',         desc: 'Los 10 animes más populares ahora mismo' },
     ]
   },
   chikolo: {
     emoji: '🗣️',
     label: '@Chikolo',
     color: 0x3B82F6,
-    descripcion: 'Mencioná a @Chikolo y dile lo que querís',
+    descripcion: 'mencioná a @Chikolo y dile lo que querí',
     comandos: [
-      { cmd: '`que opinas de @alguien`', desc: 'Opinión random sobre alguien' },
-      { cmd: '`predice / adivina @alguien`', desc: 'Predicción del futuro' },
-      { cmd: '`insulta a @alguien`', desc: 'Insulto creativo garantizado' },
-      { cmd: '`recuerdame <cosa> en <N> mins`', desc: 'Temporizador' },
-      { cmd: '`tira dado / tira dado 20`', desc: 'Tira un dado' },
-      { cmd: '`8ball <pregunta>`', desc: 'La bola mágica responde' },
-      { cmd: '`que hora es`', desc: 'Hora de cualquier país' },
-      { cmd: '`elige <A> o <B>`', desc: 'El bot decide por ti, weon' },
-      { cmd: '`numero random entre X y Y`', desc: 'Número al azar' },
-      { cmd: '`chiste`', desc: 'Chiste malo garantizado' },
-      { cmd: '`verdad / reto`', desc: 'Verdad o reto random' },
-      { cmd: '`cara o sello`', desc: 'Moneda al aire' },
+      { cmd: '`que opinas de @alguien`',       desc: 'Opinión random sobre alguien' },
+      { cmd: '`predice / adivina @alguien`',   desc: 'Predicción del futuro' },
+      { cmd: '`insulta a @alguien`',           desc: 'Insulto creativo garantizado' },
+      { cmd: '`recuerdame <cosa> en <N> mins`',desc: 'Temporizador' },
+      { cmd: '`tira dado / tira dado 20`',     desc: 'Tira un dado' },
+      { cmd: '`8ball <pregunta>`',             desc: 'La bola mágica responde' },
+      { cmd: '`que hora es`',                  desc: 'Hora de cualquier país' },
+      { cmd: '`elige <A> o <B>`',              desc: 'El bot decide por ti, won' },
+      { cmd: '`numero random entre X y Y`',    desc: 'Número al azar' },
+      { cmd: '`chiste`',                       desc: 'Chiste malo garantizado' },
+      { cmd: '`verdad / reto`',                desc: 'Verdad o reto random' },
+      { cmd: '`cara o sello`',                 desc: 'Moneda al aire' },
     ]
   }
 };
 
-// ─── EMBED PRINCIPAL (MENÚ) ───────────────────────────────────────────────────
+// ─── EMBED PRINCIPAL ──────────────────────────────────────────────────────────
 function buildMenuEmbed() {
+  const lineas = Object.entries(categorias).map(([, cat]) =>
+    `${cat.emoji}  **${cat.label}** — *${cat.descripcion}*`
+  ).join('\n');
+
   return new EmbedBuilder()
     .setColor(0x2B2D31)
-    .setTitle('🤙  CHIKOLO BOT  🤙')
+    .setTitle('CHIKOLO BOT')
     .setDescription(
-      '> *El bot más xoro del serv.*\n\n' +
-      '**Elige una categoría** pa ver los comandos:\n\n' +
-      Object.entries(categorias).map(([, cat]) =>
-        `${cat.emoji} **${cat.label}** — ${cat.descripcion}`
-      ).join('\n') +
-      '\n\n🌙 **Modo curao** activo entre las **2am – 6am** (hora Chile)'
+      '*El bot más xoro del serv.*\n\u200b\n' +
+      lineas +
+      '\n\u200b\n' +
+      '> Elige una categoría abajo pa ver los comandos.\n' +
+      '> Entre las **2am – 6am** (Chile) el modo curao está activo 🌙'
     )
-    .setFooter({ text: 'Chikolo Bot • Hecho con ❤️ y pisco' })
+    .setFooter({ text: 'Chikolo Bot • hecho con cariño y pisco' })
     .setTimestamp();
 }
 
 // ─── EMBED DE CATEGORÍA ───────────────────────────────────────────────────────
 function buildCategoryEmbed(catKey) {
   const cat = categorias[catKey];
+
   return new EmbedBuilder()
     .setColor(cat.color)
-    .setTitle(`${cat.emoji}  ${cat.label.toUpperCase()}`)
+    .setTitle(`${cat.emoji}  ${cat.label}`)
     .setDescription(`*${cat.descripcion}*\n\u200b`)
     .addFields(
       cat.comandos.map(c => ({
@@ -94,10 +108,10 @@ function buildCategoryEmbed(catKey) {
         inline: false,
       }))
     )
-    .setFooter({ text: '← Vuelve al menú con el botón 🏠 Inicio' });
+    .setFooter({ text: 'Vuelve al menú con el botón Inicio' });
 }
 
-// ─── FILAS DE BOTONES ─────────────────────────────────────────────────────────
+// ─── BOTONES ──────────────────────────────────────────────────────────────────
 function buildButtons(activeCat = null) {
   const keys = Object.keys(categorias);
 
@@ -145,13 +159,13 @@ module.exports = {
 
     const collector = msg.createMessageComponentCollector({
       componentType: ComponentType.Button,
-      time: 120_000, // 2 minutos
+      time: 120_000,
     });
 
     collector.on('collect', async interaction => {
       if (interaction.user.id !== message.author.id) {
         return interaction.reply({
-          content: 'Ese menú no es tuyo weon, escribe `!ayuda` tú mismo 😤',
+          content: 'ese menú no es tuyo won, escribe `!ayuda` tú mismo 😤',
           ephemeral: true,
         });
       }

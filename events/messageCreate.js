@@ -1,4 +1,15 @@
 const frases = require('../data/frases.json');
+const fs = require('fs');
+const path = require('path');
+
+function getPrefix() {
+  try {
+    const data = fs.readFileSync(path.join(__dirname, '../data/prefix.json'), 'utf8');
+    return JSON.parse(data).prefix ?? '!';
+  } catch {
+    return '!';
+  }
+}
 
 // Estado global compartido entre comandos
 const estado = {
@@ -61,7 +72,7 @@ module.exports = {
     }
 
     // ─── COMANDOS SIN MENCIÓN ─────────────────────────────────────────────
-    const PREFIX = '!';
+    const PREFIX = getPrefix();
     if (contenido.startsWith(PREFIX)) {
       const args = contenidoRaw.slice(PREFIX.length).trim().split(/\s+/);
       const cmdName = args.shift().toLowerCase();
